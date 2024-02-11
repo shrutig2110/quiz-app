@@ -1,6 +1,7 @@
 package com.practice.quizapp.Repository;
 
 import com.practice.quizapp.model.response.Question;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import java.util.List;
 public interface QuestionDAO extends JpaRepository<Question, Integer> {
 
     List<Question> findByCategory(String category);
+    @Transactional
+    void deleteByCategory(String category);
 }

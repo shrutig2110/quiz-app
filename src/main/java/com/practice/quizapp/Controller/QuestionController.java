@@ -4,6 +4,8 @@ import com.practice.quizapp.Service.QuestionService;
 import com.practice.quizapp.model.response.Question;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.QueryAnnotation;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +31,11 @@ public class QuestionController {
     public String addQuestion(@RequestBody Question question)
     {
      return questionService.addQuestion(question);
+    }
+
+    @DeleteMapping("/remove/{category}")
+    public String deleteQuestionByCategory(@PathVariable String category)
+    {
+        return questionService.deleteQuestionById(category);
     }
 }
