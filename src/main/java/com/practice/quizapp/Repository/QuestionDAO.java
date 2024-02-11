@@ -11,5 +11,5 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
 
     List<Question> findByCategory(String category);
     @Transactional
-    void deleteByCategory(String category);
+    int deleteByCategory(String category);
 }

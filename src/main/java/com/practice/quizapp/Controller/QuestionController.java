@@ -2,12 +2,16 @@ package com.practice.quizapp.Controller;
 
 import com.practice.quizapp.Service.QuestionService;
 import com.practice.quizapp.model.response.Question;
+import org.apache.coyote.Response;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.QueryAnnotation;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,26 +20,26 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
     @GetMapping("/allQuestions")
-    public List<Question> getAllQuestions()
+    public ResponseEntity<List<Question>> getAllQuestions()
     {
         return questionService.getAllQuestions();
     }
 
     @GetMapping("/category/{category}")
-    public List<Question> getQuestionsByCategory(@PathVariable String category)
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category)
     {
          return questionService.getQuestionsByCategory(category);
     }
 
     @PostMapping("/add")
-    public String addQuestion(@RequestBody Question question)
+    public ResponseEntity<String> addQuestion(@RequestBody Question question)
     {
      return questionService.addQuestion(question);
     }
 
     @DeleteMapping("/remove/{category}")
-    public String deleteQuestionByCategory(@PathVariable String category)
+    public ResponseEntity<String> deleteQuestionByCategory(@PathVariable String category)
     {
-        return questionService.deleteQuestionById(category);
+        return questionService.deleteQuestionByCategory(category);
     }
 }
