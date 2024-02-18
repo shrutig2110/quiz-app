@@ -1,9 +1,7 @@
 package com.practice.quizapp.model.response;
 
 import jakarta.persistence.*;
-import jakarta.persistence.metamodel.IdentifiableType;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity

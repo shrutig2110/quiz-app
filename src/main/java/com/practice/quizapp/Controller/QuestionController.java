@@ -2,16 +2,11 @@ package com.practice.quizapp.Controller;
 
 import com.practice.quizapp.Service.QuestionService;
 import com.practice.quizapp.model.response.Question;
-import org.apache.coyote.Response;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.QueryAnnotation;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,6 +30,12 @@ public class QuestionController {
     public ResponseEntity<String> addQuestion(@RequestBody Question question)
     {
      return questionService.addQuestion(question);
+    }
+
+    @PutMapping("update/{id}")
+    public ResponseEntity<String> updateById(@PathVariable Integer id, @RequestBody Question question)
+    {
+        return questionService.updateById(id, question);
     }
 
     @DeleteMapping("/remove/{category}")

@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface QuestionDAO extends JpaRepository<Question, Integer> {
 
+    List<Question> findAllByOrderByIdAsc();
     List<Question> findByCategory(String category);
     @Transactional
     int deleteByCategory(String category);
